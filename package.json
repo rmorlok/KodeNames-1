@@ -1,0 +1,41 @@
+{
+  "name": "@rmorlok/kodenames-1",
+  "version": "0.0.1",
+  "description": "Kodenames game",
+  "author": {
+    "name": "Ryan Morlok",
+    "url": "https://kodenames.morlok.biz",
+    "github": "https://github.com/rmorlok/KodeNames-1",
+    "twitter": "https://twitter.com/rmorlok"
+  },
+  "contributors": [
+    {
+      "name": "Ryan Morlok",
+      "url": "https://github.com/rmorlok"
+    },
+    {
+      "name": "Ninjabunny",
+      "url": "https://github.com/ninjabunny"
+    }
+  ],
+  "homepage": "https://kodenames.morlok.biz",
+  "copyright": "Copyright 2020",
+  "license": "MIT",
+  "scripts": {
+    "deploy": "gulp deploy"
+  },
+  "private": false,
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^4.0.2",
+    "gulp-awspublish": "^4.1.1",
+    "gulp-clean": "^0.4.0",
+    "gulp-cli": "^2.2.0",
+    "gulp-cloudfront-invalidate": "^0.1.5",
+    "concurrent-transform": "^1.0.0"
+  },
+  "engines": {
+    "node": ">= 12.6.0",
+    "npm": ">= 6.10.0"
+  }
+}

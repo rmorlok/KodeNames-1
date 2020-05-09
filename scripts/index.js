@@ -14,8 +14,8 @@ var customData = [];
 
 var COLOR_RED = "#ff0000";
 var COLOR_YELLOW = "#ffff00";
-var COLOR_BLUE = "#00eeee";
-var COLOR_BLACK = "#808080";
+var COLOR_BLUE = "#0000ff";
+var COLOR_BLACK = "black";
 var COLOR_GREEN = "#009000";
 
 //init
