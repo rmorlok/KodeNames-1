@@ -21,18 +21,29 @@ var COLOR_GREEN = "#009000";
 //init
 $("#seed").keyup(function() {
 	fire();
+	setQueryParameter('seed', $('#seed').val());
 });
 
 $("#gameMode").change(function() {
 	fire();
 });
 
+if (getQueryParameterByName('seed')) {
+	$("#seed").val(getQueryParameterByName('seed'));
+} else {
+	$("#seed").val(Math.floor(Math.random() * 1000));
+}
 
-$("#seed").val(Math.floor(Math.random() * 1000));
+// Make the game easily sharable
+window.setTimeout(function() {
+	setQueryParameter('seed', $('#seed').val());
+}, 500);
+
+
 fire();
 
 function fire() {
-	//get seed and set the seed for randomizer
+	// Get seed and set the seed for randomizer
 	var seed = document.getElementById("seed").value;
 	Math.seedrandom(seed.toLowerCase());
 
@@ -224,13 +235,54 @@ function shuffle(array) {
 	return array;
 }
 
-//enable pressing 'Enter' on seed field
+// Enable pressing 'Enter' on seed field
 document.getElementById('seed').onkeypress = function(e) {
 	if (!e) e = window.event;
 	var keyCode = e.keyCode || e.which;
 	if (keyCode == '13') {
 		// Enter pressed
 		fire();
+		setQueryParameter('seed', $('#seed').val());
 		return false;
 	}
+}
+
+// Taken from:
+// https://stackoverflow.com/questions/901115/how-can-i-get-query-string-values-in-javascript
+function getQueryParameterByName(name) {
+	var url = window.location.href;
+	name = name.replace(/[\[\]]/g, '\\$&');
+	var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+		results = regex.exec(url);
+	if (!results) return null;
+	if (!results[2]) return '';
+	return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+// Based on from:
+// http://stackoverflow.com/a/10997390/11236
+//        and
+// https://stackoverflow.com/questions/1090948/change-url-parameters
+function setQueryParameter(name, val) {
+	function updateURLParameter(url, param, paramVal){
+		var newAdditionalURL = "";
+		var tempArray = url.split("?");
+		var baseURL = tempArray[0];
+		var additionalURL = tempArray[1];
+		var temp = "";
+		if (additionalURL) {
+			tempArray = additionalURL.split("&");
+			for (var i=0; i<tempArray.length; i++){
+				if(tempArray[i].split('=')[0] != param){
+					newAdditionalURL += temp + tempArray[i];
+					temp = "&";
+				}
+			}
+		}
+
+		var rows_txt = temp + "" + param + "=" + paramVal;
+		return baseURL + "?" + newAdditionalURL + rows_txt;
+	}
+
+	window.history.replaceState('', '', updateURLParameter(window.location.href, name, val.toString()));
 }
