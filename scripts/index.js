@@ -140,21 +140,21 @@ function createNewGame() {
 
 function clicked(value) {
 	if (spyMasterMode) {
-		//spymaster mode
+		// Spymaster mode
 		document.getElementById(value).style.backgroundColor = COLOR_GREEN;
 	} else {
-		//guessers mode
+		// Guessers mode
 		var word = wordsSelected[value];
 		if (document.getElementById("confirm").checked) {
 			if (window.confirm("Are sure you want to select '" + word + "'?")) {
 				document.getElementById(value).style.backgroundColor = teams[value];
-				if (teams[value] == "black") {
+				if (teams[value] === COLOR_BLACK) {
 					document.getElementById(value).style.color = "white";
 				}
 			}
 		} else {
 			document.getElementById(value).style.backgroundColor = teams[value];
-			if (teams[value] == "black") {
+			if (teams[value] === COLOR_BLACK) {
 				document.getElementById(value).style.color = "white";
 			}
 		}
@@ -209,7 +209,7 @@ function spyMaster() {
 	spyMasterMode = true;
 	for (var i = 0; i < NUMBER_OF_WORDS; i++) {
 		document.getElementById(i).style.backgroundColor = teams[i];
-		if (teams[i] == "black") {
+		if (teams[i] === COLOR_BLACK) {
 			document.getElementById(i).style.color = "white";
 		}
 	}
@@ -239,7 +239,7 @@ function shuffle(array) {
 document.getElementById('seed').onkeypress = function(e) {
 	if (!e) e = window.event;
 	var keyCode = e.keyCode || e.which;
-	if (keyCode == '13') {
+	if (keyCode === '13') {
 		// Enter pressed
 		fire();
 		setQueryParameter('seed', $('#seed').val());
@@ -273,7 +273,7 @@ function setQueryParameter(name, val) {
 		if (additionalURL) {
 			tempArray = additionalURL.split("&");
 			for (var i=0; i<tempArray.length; i++){
-				if(tempArray[i].split('=')[0] != param){
+				if(tempArray[i].split('=')[0] !== param){
 					newAdditionalURL += temp + tempArray[i];
 					temp = "&";
 				}
