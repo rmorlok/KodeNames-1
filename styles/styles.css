@@ -141,3 +141,15 @@ button, input, span#first {
 	font-size: 23px;
 	flex-grow: 1;
 }
+
+#attribution {
+	font-size: 5px;
+	color: #DDDDDD;
+	position : absolute;
+	right: 20px;
+	bottom: 10px;
+}
+
+#attribution a {
+	color: #DDDDDD;
+}

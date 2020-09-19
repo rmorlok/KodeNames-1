@@ -32,6 +32,7 @@ function push() {
             'scripts/**',
             'data/**',
             'styles/**',
+            'img/**',
             'index.html'
         ], {base: './'})
         .pipe(awspublish.gzip())
